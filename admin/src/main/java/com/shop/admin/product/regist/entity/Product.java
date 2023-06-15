@@ -1,8 +1,15 @@
-package com.shop.admin.product.find.entity;
+package com.shop.admin.product.regist.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
-@Entity(name = "Product")
+@NoArgsConstructor
+@AllArgsConstructor
+@Setter
+@Getter
+@ToString
+@Builder
+@Entity(name = "ProductForProductRegist")
 @Table(name = "TBL_PRODUCT")
 @SequenceGenerator(
         name = "PRODUCT_SEQ_GENERATOR",
@@ -24,6 +31,12 @@ public class Product {
 
     @Column(name = "PRODUCT_DATE")
     private String productDate;
+
+    @Column(name = "PRODUCT_CATEGORY_NO")
+    private int productCategoryNo;
+
+    @Column(name = "PRODUCT_STATUS_NO")
+    private int productStatusNo;
 
     @Column(name = "PRODUCT_PRICE")
     private int productPrice;

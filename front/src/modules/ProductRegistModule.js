@@ -42,11 +42,10 @@ const productRegistReducer = handleActions(
             return {...state};
         },
         [POST_PRODUCT]: (state, { payload }) => {
+            console.log(payload.data);
             state.no = payload.data.productNo;
             
             console.log(state);
-            
-            state.no = 1;
 
             return {...state};
         },
