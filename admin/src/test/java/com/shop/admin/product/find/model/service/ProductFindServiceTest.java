@@ -1,9 +1,10 @@
-package com.shop.admin.product.regist.service;
+package com.shop.admin.product.find.model.service;
 
 import com.shop.admin.AdminApplication;
 import com.shop.admin.config.BeanConfiguration;
 import com.shop.admin.config.JpaCongifuration;
-import com.shop.admin.product.regist.dto.ProductCategoryDTO;
+import com.shop.admin.product.find.model.dto.PageInfoDTO;
+import com.shop.admin.product.find.model.dto.ProductDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,29 +13,30 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @ContextConfiguration(classes = {
-        BeanConfiguration.class,
+        AdminApplication.class,
         JpaCongifuration.class,
-        AdminApplication.class
+        BeanConfiguration.class
 })
 class ProductFindServiceTest {
-
     @Autowired
-    private ProductRegistService service;
+    private ProductFindService service;
 
     @Test
     public void initTest() {
+
         assertNotNull(service);
     }
 
     @Test
-    public void findAll_ProductCategories_test() {
+    public void findAll_Test() {
+        PageInfoDTO pageInfo = PageInfoDTO.builder().page(1).pageItemCount(10).totalItemCount(1).type("").build();
+        List<ProductDTO> products = service.findAllProducts(pageInfo);
 
-        List<ProductCategoryDTO> categories = service.findAllProductCategories();
+        assertNotNull(products);
 
-        assertNotNull(categories);
-
-        categories.forEach(System.out::println);
+        products.forEach(System.out::println);
     }
 }

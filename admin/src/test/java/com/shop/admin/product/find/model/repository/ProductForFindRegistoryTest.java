@@ -1,9 +1,9 @@
-package com.shop.admin.product.regist.service;
+package com.shop.admin.product.find.model.repository;
 
 import com.shop.admin.AdminApplication;
 import com.shop.admin.config.BeanConfiguration;
 import com.shop.admin.config.JpaCongifuration;
-import com.shop.admin.product.regist.dto.ProductCategoryDTO;
+import com.shop.admin.product.find.model.entity.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -12,29 +12,30 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 @SpringBootTest
 @ContextConfiguration(classes = {
         BeanConfiguration.class,
         JpaCongifuration.class,
         AdminApplication.class
 })
-class ProductFindServiceTest {
+class ProductForFindRegistoryTest {
 
     @Autowired
-    private ProductRegistService service;
+    private ProductForFindRegistory repo;
 
     @Test
     public void initTest() {
-        assertNotNull(service);
+
+        assertNotNull(repo);
     }
 
     @Test
-    public void findAll_ProductCategories_test() {
+    public void findAll_Test() {
+        List<Product> products = repo.findAll();
 
-        List<ProductCategoryDTO> categories = service.findAllProductCategories();
+        assertNotNull(products);
 
-        assertNotNull(categories);
-
-        categories.forEach(System.out::println);
+        products.forEach(System.out::println);
     }
 }

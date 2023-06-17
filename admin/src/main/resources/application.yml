@@ -27,8 +27,8 @@
 #  mail:
 #    host: smtp.gmail.com
 #    port: 587
-#    username: tkdjawlwhs@gmail.com
-#    password: a33196417
+#    username:
+#    password:
 #    properties:
 #      mail:
 #        smtp:
