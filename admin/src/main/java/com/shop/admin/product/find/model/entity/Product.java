@@ -37,8 +37,9 @@ public class Product {
     @JoinColumn(name = "PRODUCT_CATEGORY_NO")
     private ProductCategory productCategory;
 
-    @Column(name = "PRODUCT_STATUS_NO")
-    private int productStatusNo;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_STATUS_NO")
+    private ProductStatus productStatus;
 
     @Column(name = "PRODUCT_PRICE")
     private int productPrice;
