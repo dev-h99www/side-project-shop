@@ -31,4 +31,10 @@ public class ProductFindController {
 
         return service.findAllProducts(pageInfo);
     }
+
+    @GetMapping("{productNo}")
+    public ProductDTO findProductByProductNo(@PathVariable("productNo") int productNo) {
+
+        return service.findProductByProductNo(productNo);
+    }
 }

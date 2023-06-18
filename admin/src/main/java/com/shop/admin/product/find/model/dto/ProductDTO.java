@@ -13,7 +13,7 @@ public class ProductDTO {
     private int productNo;
     private String productName;
     private String productDate;
-    private int productCategoryNo;
+    private ProductCategoryDTO productCategory;
     private int productStatusNo;
     private int productPrice;
 }

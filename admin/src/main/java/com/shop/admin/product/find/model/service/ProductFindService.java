@@ -36,4 +36,9 @@ public class ProductFindService {
 
         return productRepo.count();
     }
+
+    public ProductDTO findProductByProductNo(int productNo) {
+
+        return mapper.map(productRepo.findById(productNo).get(), ProductDTO.class);
+    }
 }

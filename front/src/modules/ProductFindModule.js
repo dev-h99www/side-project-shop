@@ -7,16 +7,19 @@ const initialState = {
         pageItemCount: 10,
         type: ''
       },
-    products: []
+    products: [],
+    product: {}
 };
 
 export const GET_PRODUCTS = 'products/GET_PRODUCTS';
 export const PAGE_CHANGE = 'products/PAGE_CHANGE';
 export const GET_PRODUCTS_COUNT = 'products/GET_PRODUCTS_COUNT';
+export const GET_PRODUCT = 'products/GET_PRODUCT';
 
 const actions = createActions({
     [GET_PRODUCTS]: () => {},
     [PAGE_CHANGE]: () => {},
+    [GET_PRODUCT]: () => {},
     [GET_PRODUCTS_COUNT]: () => {}
 
 });
@@ -27,6 +30,11 @@ const productFindReducer = handleActions(
             
             state.products = payload.data;
             
+            return {...state};
+        },
+        [GET_PRODUCT]: (state, {payload}) => {
+            state.product = payload.data;
+
             return {...state};
         },
         [PAGE_CHANGE]: (state, {payload}) => {

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { getDateAndTime } from '../util/getTime';
 import { getServerAddr } from '../util/getServerAddr';
 import { GET_REGIST_PRODUCT, POST_PRODUCT } from '../modules/ProductRegistModule';
-import { GET_PRODUCTS, GET_PRODUCTS_COUNT } from '../modules/ProductFindModule';
+import { GET_PRODUCT, GET_PRODUCTS, GET_PRODUCTS_COUNT } from '../modules/ProductFindModule';
 
 export function registProductAPI(name, category, price) {
     const POST_PRODUCT_URL = getServerAddr() + '/products/regist';
@@ -61,5 +61,16 @@ export function findProductsAPI(pageInfo) {
                                     .catch(err => console.log(err));
 
         dispatch({type: GET_PRODUCTS, payload: result});
+    }
+}
+
+export function getProductInfoAPI(productNo) {
+    const GET_PRODUCT_URL = getServerAddr() + '/products/' + productNo;
+
+    return async function getProductInfo(dispatch, getState) {
+            
+            const result = await axios.get(GET_PRODUCT_URL).catch(err => console.log(err));
+
+            dispatch({type: GET_PRODUCT, payload: result});
     }
 }

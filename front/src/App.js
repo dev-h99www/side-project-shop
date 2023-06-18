@@ -4,6 +4,7 @@ import Main from './pages/Main';
 import DeliveryManage from './pages/DeliveryManage';
 import ProductManage from './pages/ProductManage';
 import ProductRegist from './pages/ProductRegist';
+import ProductInfo from './pages/ProductInfo';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="delevery/manage" element={<DeliveryManage/>}/>
           <Route path="product/manage">  
             <Route index element={<ProductManage/>}/>
+            <Route path=":productNo" element={<ProductInfo/>}/>
             <Route path="regist" element={<ProductRegist/>}/>
           </Route>
         </Route>

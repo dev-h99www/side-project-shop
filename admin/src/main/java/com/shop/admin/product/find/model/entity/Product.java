@@ -2,6 +2,7 @@ package com.shop.admin.product.find.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Fetch;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -9,7 +10,7 @@ import lombok.*;
 @Getter
 @ToString
 @Builder
-@Entity(name = "ProductForProductFind")
+@Entity(name = "ProductForProductProductFind")
 @Table(name = "TBL_PRODUCT")
 @SequenceGenerator(
         name = "PRODUCT_SEQ_GENERATOR",
@@ -32,8 +33,9 @@ public class Product {
     @Column(name = "PRODUCT_DATE")
     private String productDate;
 
-    @Column(name = "PRODUCT_CATEGORY_NO")
-    private int productCategoryNo;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "PRODUCT_CATEGORY_NO")
+    private ProductCategory productCategory;
 
     @Column(name = "PRODUCT_STATUS_NO")
     private int productStatusNo;

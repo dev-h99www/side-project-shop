@@ -4,7 +4,7 @@ import ProductListCSS from "./ProductListCSS.module.css";
 function ProductList ({product}) {
 
     const navigate = useNavigate();
-    const {productNo, productName, productPrice} = product;
+    const {productNo, productName, productPrice, productCategory} = product;
 
     const onClickHandler = () => {
         navigate(`/product/manage/${productNo}`);
@@ -14,6 +14,7 @@ function ProductList ({product}) {
             {productNo}
             {productName}
             {productPrice}
+            {productCategory.productCategoryName}
         </div>
     );
 }
