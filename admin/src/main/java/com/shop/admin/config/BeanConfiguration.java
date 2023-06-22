@@ -1,5 +1,7 @@
 package com.shop.admin.config;
 
+import com.shop.admin.common.BcryptImpl;
+import com.shop.admin.common.EncryptHelper;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,4 +17,9 @@ public class BeanConfiguration {
         return new CustomModelMapper();
     }
 
+    @Bean
+    public EncryptHelper encryptHelper() {
+
+        return new BcryptImpl();
+    }
 }

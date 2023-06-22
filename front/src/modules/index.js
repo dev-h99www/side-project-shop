@@ -1,12 +1,12 @@
 import { combineReducers } from "redux";
 import productRegistReducer from './ProductRegistModule';
 import productFindReducer from "./ProductFindModule";
-import loginReducer from "./LoginModule";
+import memberReducer from "./MemberModule";
 
 const rootReducer = combineReducers({
     productRegistReducer,
     productFindReducer,
-    loginReducer
+    memberReducer
 });
 
 export default rootReducer;

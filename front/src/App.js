@@ -5,6 +5,7 @@ import DeliveryManage from './pages/DeliveryManage';
 import ProductManage from './pages/ProductManage';
 import ProductRegist from './pages/ProductRegist';
 import ProductInfo from './pages/ProductInfo';
+import Signup from './pages/Signup';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="regist" element={<ProductRegist/>}/>
           </Route>
         </Route>
+        <Route path="signup" element={<Signup/>}/>
       </Routes>
     </BrowserRouter>
   );

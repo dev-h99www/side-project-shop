@@ -17,4 +17,12 @@ public class MemberController {
 
         return "success";
     }
+
+    @PostMapping("signup")
+    public boolean signup(@RequestBody MemberDTO memberInfo) {
+
+        System.out.println(memberInfo);
+
+        return true;
+    }
 }

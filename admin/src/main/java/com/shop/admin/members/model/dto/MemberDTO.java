@@ -1,5 +1,9 @@
 package com.shop.admin.members.model.dto;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.*;
 
 @NoArgsConstructor
@@ -8,6 +12,9 @@ import lombok.*;
 @Getter
 @ToString
 public class MemberDTO {
-    private String id;
-    private String pwd;
+    private int memberNo;
+    private String memberId;
+    private String memberName;
+    private String memberPassword;
+    private String memberRole;
 }

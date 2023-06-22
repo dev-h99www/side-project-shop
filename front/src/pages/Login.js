@@ -1,15 +1,21 @@
 import { useSelector, useDispatch } from 'react-redux';
 import LoginCSS from './LoginCSS.module.css';
-import { SET_ID, SET_PWD } from '../modules/LoginModule.js';
-import { loginAPI } from '../apis/LoginAPICALL'
+import { SET_ID, SET_PWD } from '../modules/MemberModule.js';
+import { loginAPI } from '../apis/MemberAPICALL'
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
 
-  const { loginInfo } = useSelector(state => state.loginReducer);
+  const { memberInfo } = useSelector(state => state.memberReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const  loginBtnHandler = () => {
-    dispatch(loginAPI(loginInfo));
+    dispatch(loginAPI(memberInfo));
+  }
+
+  const signUpBtnHandler = () => {
+    navigate("/signup");            
   }
   return (
     <div>
@@ -30,7 +36,7 @@ function Login() {
           <br/>
           <br/>      
 
-          <button className={LoginCSS.loginButton}>회원가입</button>
+          <button onClick={ signUpBtnHandler } className={LoginCSS.loginButton}>회원가입</button>
           <button onClick={ loginBtnHandler } className={LoginCSS.loginButton}>로그인</button>
         </div>
       </div>
