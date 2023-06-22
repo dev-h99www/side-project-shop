@@ -28,29 +28,33 @@ const actions = createActions({
 const productRegistReducer = handleActions(
     {
         [SET_NAME]: (state, { payload }) => {
+
             state.name = payload;
-            console.log(payload);
-            console.log(state);
-            return {...state};
-        },
-        [SET_PRICE]: (state, { payload }) => {
-            state.price = payload;
-            return {...state};
-        },
-        [SET_CATEGORY]: (state, { payload }) => {
-            state.category = payload;
-            return {...state};
-        },
-        [POST_PRODUCT]: (state, { payload }) => {
-            console.log(payload.data);
-            state.no = payload.data.productNo;
-            
-            console.log(state);
 
             return {...state};
         },
+        [SET_PRICE]: (state, { payload }) => {
+
+            state.price = payload;
+
+            return {...state};
+        },
+        [SET_CATEGORY]: (state, { payload }) => {
+
+            state.category = payload;
+
+            return {...state};
+        },
+        [POST_PRODUCT]: (state, { payload }) => {
+
+            state.no = payload.data.productNo;
+            
+            return {...state};
+        },
         [GET_REGIST_PRODUCT]: (state, {payload}) => {
+
             state.categorys = payload.data;
+
             return {...state};
         }
     },

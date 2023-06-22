@@ -8,8 +8,15 @@ const initialState = {
         type: ''
       },
     products: [],
-    product: {}
-};
+    product: {
+        productNo: 0,
+        productName: '',
+        productPrice: 0,
+        productCategory: {productCategoryNo: 0, productCategoryName: ''},
+        productStatus: {productStatusNo: 0, productStatusName: ''}
+    }
+}
+
 
 export const GET_PRODUCTS = 'products/GET_PRODUCTS';
 export const PAGE_CHANGE = 'products/PAGE_CHANGE';
@@ -29,16 +36,19 @@ const productFindReducer = handleActions(
         [GET_PRODUCTS]: (state, {payload}) => {
             
             state.products = payload.data;
-            
+
             return {...state};
         },
         [GET_PRODUCT]: (state, {payload}) => {
+
             state.product = payload.data;
 
             return {...state};
         },
         [PAGE_CHANGE]: (state, {payload}) => {
+
             state.pageInfo.page = payload;
+
             return {...state};
         },
         [GET_PRODUCTS_COUNT]: (state, {payload}) => {

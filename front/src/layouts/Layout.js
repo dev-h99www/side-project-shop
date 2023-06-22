@@ -6,8 +6,8 @@ import Login from '../pages/Login';
 
 function Layout() {
 
-    let isLogin = true;
-    let isAdmin = true;
+    let isLogin = false;
+    let isAdmin = false;
 
     if(!isLogin) {
         return (
