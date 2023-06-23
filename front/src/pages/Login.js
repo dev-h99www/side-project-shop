@@ -29,7 +29,6 @@ function Login() {
 
       if(generatedToken != undefined && generatedToken != null) {
         
-        dispatch({type: POST_LOGIN, payload: res});
         setCookie('token', generatedToken, { expires })
         window.location.replace('/');
       }
