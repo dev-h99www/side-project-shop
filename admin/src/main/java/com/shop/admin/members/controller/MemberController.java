@@ -1,6 +1,9 @@
 package com.shop.admin.members.controller;
 
 import com.shop.admin.members.model.dto.MemberDTO;
+import com.shop.admin.members.model.dto.ResponseDTO;
+import com.shop.admin.members.model.dto.SignInResponseDTO;
+import com.shop.admin.members.model.service.MemberService;
 import org.springframework.web.bind.annotation.*;
 
 import static com.shop.admin.common.Address.FRONT_ADDRESS;
@@ -10,19 +13,21 @@ import static com.shop.admin.common.Address.FRONT_ADDRESS;
 @RequestMapping("/members")
 public class MemberController {
 
+    private final MemberService service;
+
+    public MemberController(MemberService service) {
+        this.service = service;
+    }
+
     @PostMapping("login")
-    public String loginCheck(@RequestBody MemberDTO loginInfo) {
+    public ResponseDTO<SignInResponseDTO> login(@RequestBody MemberDTO loginInfo) {
 
-        System.out.println(loginInfo);
-
-        return "success";
+        return service.logIn(loginInfo);
     }
 
     @PostMapping("signup")
-    public boolean signup(@RequestBody MemberDTO memberInfo) {
+    public ResponseDTO<?> signup(@RequestBody MemberDTO memberInfo) {
 
-        System.out.println(memberInfo);
-
-        return true;
+        return service.signUp(memberInfo);
     }
 }

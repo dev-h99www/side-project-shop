@@ -1,17 +1,14 @@
 import axios from "axios";
-import { POST_LOGIN, POST_SIGNUP } from "../modules/MemberModule";
+import { POST_SIGNUP } from "../modules/MemberModule";
 import { getServerAddr } from "../util/getServerAddr";
 
 export function loginAPI(memberInfo) {
 
   const POST_LOGIN_URL = getServerAddr() + '/members/login';
 
-  return async function login(dispatch, getState) {
+  return axios.post(POST_LOGIN_URL, memberInfo).catch(err => console.log(err));
 
-    const result = await axios.post(POST_LOGIN_URL, memberInfo).catch(err => console.log(err));
-
-    dispatch({type: POST_LOGIN, payload: result});
-  }
+  // return async fun
 }
 
 export function signupAPI(memberInfo) {

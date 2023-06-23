@@ -2,6 +2,7 @@ package com.shop.admin.members.model.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,5 +37,6 @@ public class Member {
     private String memberPassword;
 
     @Column(name = "MEMBER_ROLE")
+    @ColumnDefault("'ROLE_USER'")
     private String memberRole;
 }
