@@ -15,4 +15,6 @@ public class PageInfoDTO {
     private int totalItemCount;
     private int pageItemCount;
     private String type;
+    private int categoryNo;
+    private int statusNo;
 }

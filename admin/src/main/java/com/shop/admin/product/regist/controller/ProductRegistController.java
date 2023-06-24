@@ -13,12 +13,12 @@ import static com.shop.admin.common.Address.*;
 @CrossOrigin(originPatterns = FRONT_ADDRESS)
 @RestController
 @RequestMapping("/products")
-public class ProductController {
+public class ProductRegistController {
 
     private final ProductRegistService service;
 
     @Autowired
-    public ProductController(ProductRegistService service) {
+    public ProductRegistController(ProductRegistService service) {
         this.service = service;
     }
 

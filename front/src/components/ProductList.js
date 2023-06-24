@@ -4,7 +4,7 @@ import ProductListCSS from "./ProductListCSS.module.css";
 function ProductList ({product}) {
 
     const navigate = useNavigate();
-    const {productNo, productName, productPrice, productCategory} = product;
+    const {productNo, productName, productPrice, productCategory, productStatus} = product;
 
     const onClickHandler = () => {
         navigate(`/product/manage/${productNo}`);
@@ -45,7 +45,7 @@ function ProductList ({product}) {
                         <td>{productName}</td>
                         <td>{productPrice}</td>
                         <td>{productCategory.productCategoryName}</td>
-                        <td>{productCategory.productCategoryName}</td>
+                        <td>{productStatus.productStatusName}</td>
                     </tr>
                 </tbody>
             </table>

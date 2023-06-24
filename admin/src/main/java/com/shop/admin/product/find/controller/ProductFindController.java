@@ -21,14 +21,15 @@ public class ProductFindController {
     }
 
     @GetMapping("counts")
-    public long finaProductsCount() {
+    public long finaProductsCount(@PathVariable("productStatusNo") int productStatusNo) {
 
-        return service.findProductsCount();
+        return service.findProductsCount(productStatusNo);
     }
 
     @GetMapping
     public List<ProductDTO> findAllProducts(@ModelAttribute("pageInfo") PageInfoDTO pageInfo) {
 
+        List<ProductDTO> list = service.findAllProducts(pageInfo);
         return service.findAllProducts(pageInfo);
     }
 

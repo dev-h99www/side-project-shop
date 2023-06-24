@@ -1,9 +1,21 @@
 .headergroup{
 
-    border-color: #844F15;
+  margin: 30px;
+  margin-left: 5%;
+  font-size: 1.2em;
+  font-weight: 1000;
 }
 
-.body{
-    
-  border-color: #844F15;
+.home{
+  width: 100px;
+  padding-right: 3%;
+}
+
+.menu{
+  
+  padding-right: 3%;
+}
+
+.logout {
+  font-size: 1em;
 }

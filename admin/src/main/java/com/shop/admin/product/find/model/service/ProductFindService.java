@@ -32,9 +32,9 @@ public class ProductFindService {
         return productRepo.findAll(pageable).map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList());
     }
 
-    public long findProductsCount() {
+    public long findProductsCount(int productStatusNo) {
 
-        return productRepo.count();
+        return productStatusNo !=0 ? productRepo.countByProductStatusNo(productStatusNo) : productRepo.count();
     }
 
     public ProductDTO findProductByProductNo(int productNo) {
