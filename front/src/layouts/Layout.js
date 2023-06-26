@@ -5,7 +5,6 @@ import Header from '../components/Header';
 import Login from '../pages/Login';
 import { Cookies } from 'react-cookie';
 import jwtDecode from 'jwt-decode';
-import { SET_IS_SIGNIN } from '../modules/MemberModule';
 
 function Layout() {
 

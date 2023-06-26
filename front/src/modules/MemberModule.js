@@ -6,31 +6,21 @@ const initialState = {
         memberName: '',
         memberPassword: ''
     },
-    isSignupSuccess: false,
-    isSigninSuccess: false,
-    loginInfo: {
-        token: '',
-        exprTime: 0,
-        userInfo: {}
-    }
+    isSignupSuccess: false
 };
 
 export const SET_ID = 'members/SET_ID';
 export const SET_NAME = 'members/SET_NAME';
 export const SET_PWD = 'members/SET_PWD';
-export const POST_LOGIN = 'members/POST_LOGIN';
 export const POST_SIGNUP = 'members/POST_SIGNUP';
 export const SET_SIGNUP_SUCCESS = 'members/SET_SIGNUP_SUCCESS';
-export const SET_IS_SIGNIN = 'members/SET_IS_SIGNIN';
 
 const actions = createActions({
     [SET_ID]: () => {},
     [SET_NAME]: () => {},
     [SET_PWD]: () => {},
-    [POST_LOGIN]: () => {},
     [POST_SIGNUP]: () => {},
     [SET_SIGNUP_SUCCESS]: () => {},
-    [SET_IS_SIGNIN]: () => {}
 
 });
 
@@ -57,16 +47,6 @@ const memberReducer = handleActions(
 
             return {...state};
         },
-        [POST_LOGIN]: (state, {payload}) => {
-
-            state.isSigninSuccess = payload.data.result;
-            state.loginInfo.token = payload.data.data.token;
-            state.loginInfo.exprTime = payload.data.data.exprTime;
-            state.loginInfo.userInfo = payload.data.data.user;
-
-            console.log(state);
-            return {...state};
-        },
         [POST_SIGNUP]: (state, {payload}) => {
             
             state.isSignupSuccess = payload.data.result;
@@ -76,12 +56,6 @@ const memberReducer = handleActions(
         [SET_SIGNUP_SUCCESS]: (state, {payload}) => {
             
             state.isSignupSuccess = !payload;
-
-            return {...state};
-        },
-        [SET_IS_SIGNIN]: (state, {payload}) => {
-            
-            state.isSigninSuccess = payload;
 
             return {...state};
         }

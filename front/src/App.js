@@ -13,7 +13,9 @@ function App() {
       <Routes>
         <Route path="/" element={ <Layout/> }>
           <Route index element={<Main/>}/>
-          <Route path="delevery/manage" element={<DeliveryManage/>}/>
+          <Route path="products/history" element={<Main/>}/>
+          <Route path="deliveries/history" element={<Main/>}/>
+          <Route path="delivery/manage" element={<DeliveryManage/>}/>
           <Route path="product/manage">  
             <Route index element={<ProductManage/>}/>
             <Route path=":productNo" element={<ProductInfo/>}/>

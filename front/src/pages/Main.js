@@ -1,6 +1,23 @@
+import { useDispatch, useSelector } from 'react-redux';
 import MainCSS from './MainCSS.module.css';
+import { findProductCountAPI, findProductsAPI } from '../apis/ManageProductAPICALL';
+import { useEffect } from 'react';
 
 function Main() {
+
+    const dispatch = useDispatch();
+    const { products, pageInfo } = useSelector(state => state.productFindReducer);
+    const { page, totalItemCount, pageItemCount } = pageInfo;
+    const productStatusNo = 1;
+    
+    useEffect(
+        () => {
+            dispatch(findProductCountAPI(productStatusNo));
+
+            dispatch(findProductsAPI(pageInfo));
+            
+        },[]
+    );
 
     return (
         <>

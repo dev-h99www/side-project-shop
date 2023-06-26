@@ -1,0 +1,24 @@
+#server config
+  server:
+    port: 8080
+
+#datasource config
+  spring:
+    datasource:
+      driver-class-name: net.sf.log4jdbc.sql.jdbcapi.DriverSpy
+      url: jdbc:log4jdbc:oracle:thin:@localhost:1521:xe
+      username: C##SHOP
+      password: SHOP
+      hikari:
+        auto-commit: false
+
+#jpa config
+  jpa:
+    hibernate:
+      ddl-auto: update
+    generate-ddl: false
+    show-sql: true
+    database: oracle
+    properties:
+      hibernate:
+        '[format_sql]': true
