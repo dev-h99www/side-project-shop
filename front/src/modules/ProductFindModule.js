@@ -5,9 +5,12 @@ const initialState = {
         page: 1,
         totalItemCount: 1,
         pageItemCount: 10,
-        type: '',
-        categoryNo: 0,
-        statusNo: 0
+        searchInfo : {
+            categoryNo: 0,
+            statusNo: 0,
+            searchValue: '' 
+        }
+        
       },
     products: [],
     product: {

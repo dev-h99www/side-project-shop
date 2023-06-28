@@ -112,16 +112,4 @@ class ProductServiceTest {
         assertNotNull(productInfo);
         System.out.println(productInfo);
     }
-
-    @Test
-    @DisplayName("상품 갯수 조회 테스트")
-    public void findProductCount_test(){
-        //given
-        SearchInfoDTO searchInfo = SearchInfoDTO.builder().categoryNo(1).statusNo(1).searchValue("상품").build();
-
-        //when
-
-        //then
-
-    }
 }

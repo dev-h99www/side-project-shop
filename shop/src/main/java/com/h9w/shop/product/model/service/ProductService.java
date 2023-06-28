@@ -32,24 +32,24 @@ public class ProductService {
         this.productRepo = productRepo;
     }
 
-    /** params : 상품의 카테고리, 상태, 검색어
-     *  return : 조회되는 row의 갯수
-     *
-     *  comments : 상품의 카테고리, 상태, 검색어 를 입력받아 조회되는 row 수를 반환한다.
-     * */
-    public Long findProductsCount(SearchInfoDTO searchInfo) {
+//    /** params : 상품의 카테고리, 상태, 검색어
+//     *  return : 조회되는 row의 갯수
+//     *
+//     *  comments : 상품의 카테고리, 상태, 검색어 를 입력받아 조회되는 row 수를 반환한다.
+//     * */
+//    public Long findProductsCount(SearchInfoDTO searchInfo) {
+//
+//        return productRepo.findProductsCountBySearchInfos(searchInfo);
+//    }
 
-//        return productStatusNo !=0 ? productRepo.countByProductStatusNo(productStatusNo) : productRepo.count();
-        return productRepo.findProductsCountBySearchInfos(searchInfo);
-    }
-    public List<ProductDTO> findAllProducts(PageInfoDTO pageInfo) {
+    public ResponseDTO findProductsBySearchCondition(PageInfoDTO pageInfo) {
 
         Pageable pageable = PageRequest.of(pageInfo.getPage() < 0? 0: pageInfo.getPage() - 1, pageInfo.getPageItemCount(), Sort.by("productNo").descending());
 //        Page<Product> products = productRepo.findAll(pageable);
 //        products.map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList());
 //        return productRepo.findAll().stream().map(product -> mapper.map(product, ProductDTO.class)).collect(Collectors.toList());
-
-        return productRepo.findAll(pageable).map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList());
+//        productRepo.findAll(pageable).map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList())
+        return null;
     }
 
     public ProductDTO findProductByProductNo(int productNo) {

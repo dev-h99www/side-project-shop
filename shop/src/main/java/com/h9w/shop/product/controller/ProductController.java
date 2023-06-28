@@ -37,17 +37,16 @@ public class ProductController {
         return service.registProduct(registInfo);
     }
 
-    @GetMapping("counts")
-    public long finaProductsCount(@ModelAttribute("searchInfo") SearchInfoDTO searchInfo) {
-
-        return service.findProductsCount(searchInfo);
-    }
+//    @GetMapping("counts")
+//    public long finaProductsCount(@ModelAttribute("searchInfo") SearchInfoDTO searchInfo) {
+//
+//        return service.findProductsCount(searchInfo);
+//    }
 
     @GetMapping
-    public List<ProductDTO> findAllProducts(@ModelAttribute("pageInfo") PageInfoDTO pageInfo) {
+    public ResponseDTO findProductsBySearchCondition(@ModelAttribute("pageInfo") PageInfoDTO pageInfo) {
 
-        List<ProductDTO> list = service.findAllProducts(pageInfo);
-        return service.findAllProducts(pageInfo);
+        return service.findProductsBySearchCondition(pageInfo);
     }
 
     @GetMapping("{productNo}")

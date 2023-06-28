@@ -8,11 +8,11 @@ function Main() {
     const dispatch = useDispatch();
     const { products, pageInfo } = useSelector(state => state.productFindReducer);
     const { page, totalItemCount, pageItemCount } = pageInfo;
-    const productStatusNo = 1;
+    
     
     useEffect(
         () => {
-            dispatch(findProductCountAPI(productStatusNo));
+            // dispatch(findProductCountAPI(productStatusNo));
 
             dispatch(findProductsAPI(pageInfo));
             

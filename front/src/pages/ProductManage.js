@@ -17,7 +17,7 @@ function ProductManage() {
 
     useEffect(
         () => {
-            dispatch(findProductCountAPI());
+            // dispatch(findProductCountAPI());
 
             dispatch(findProductsAPI(pageInfo));
             

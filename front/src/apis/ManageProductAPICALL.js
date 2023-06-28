@@ -34,16 +34,16 @@ export function findRegistProductInfoAPI() {
     }
 }
 
-export function findProductCountAPI(productStatusNo) {
-    const GET_PRODUCTS_COUNT_URL = getServerAddr() + '/products/counts';
+// export function findProductCountAPI(productStatusNo) {
+//     const GET_PRODUCTS_COUNT_URL = getServerAddr() + '/products/counts';
 
-    return async function findProductsCounts(dispatch, getState) {
+//     return async function findProductsCounts(dispatch, getState) {
         
-        const result = await axios.get(GET_PRODUCTS_COUNT_URL, {params: { productStatusNo }}).catch(err => console.log(err));
+//         const result = await axios.get(GET_PRODUCTS_COUNT_URL, {params: { productStatusNo }}).catch(err => console.log(err));
 
-        dispatch({type: GET_PRODUCTS_COUNT, payload: result});
-    }
-}
+//         dispatch({type: GET_PRODUCTS_COUNT, payload: result});
+//     }
+// }
 
 export function findProductsAPI(pageInfo) {
     const GET_PRODUCTS_URL = getServerAddr() + '/products';
@@ -54,9 +54,11 @@ export function findProductsAPI(pageInfo) {
                                                                     page: pageInfo.page,
                                                                     totalItemCount: pageInfo.totalItemCount,
                                                                     pageItemCount: pageInfo.pageItemCount,
-                                                                    type: pageInfo.type,
-                                                                    categoryNo: pageInfo.categoryNo,
-                                                                    statusNo: pageInfo.statusNo
+                                                                    searchInfo : {
+                                                                        categoryNo: pageInfo.searchInfo.categoryNo,
+                                                                        statusNo: pageInfo.searchInfo.statusNo,
+                                                                        searchValue: pageInfo.searchInfo.searchValue
+                                                                        }
                                                                     }
                                                             }
                                     ) 
