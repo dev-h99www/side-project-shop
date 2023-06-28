@@ -6,7 +6,6 @@ com\h9w\shop\product\model\entity\Product$ProductBuilder.class
 com\h9w\shop\product\model\entity\ProductStatus.class
 com\h9w\shop\members\model\service\MemberService.class
 com\h9w\shop\common\Address.class
-com\h9w\shop\Hello.class
 com\h9w\shop\members\model\entity\Member$MemberBuilder.class
 com\h9w\shop\product\model\entity\Product.class
 com\h9w\shop\product\model\entity\ProductCategory.class
@@ -27,9 +26,9 @@ com\h9w\shop\product\model\entity\QProduct.class
 com\h9w\shop\product\model\service\ProductService.class
 com\h9w\shop\members\model\entity\QMember.class
 com\h9w\shop\product\model\dto\ProductStatusDTO$ProductStatusDTOBuilder.class
-com\h9w\shop\AdminApplication.class
 com\h9w\shop\members\model\dto\ResponseDTO.class
 com\h9w\shop\product\model\dto\PageInfoDTO$PageInfoDTOBuilder.class
+com\h9w\shop\ShopApplication.class
 com\h9w\shop\product\model\repository\ProductCategoryRepositoryImpl.class
 com\h9w\shop\product\model\dto\ProductsDTO.class
 com\h9w\shop\product\model\repository\ProductCategoryRepository.class
@@ -38,10 +37,8 @@ com\h9w\shop\product\model\dto\ProductCategoryDTO$ProductCategoryDTOBuilder.clas
 com\h9w\shop\Controller.class
 com\h9w\shop\members\model\dto\SignInResponseDTO.class
 com\h9w\shop\product\model\repository\ProductStatueRepository.class
-com\h9w\shop\AdminApplication$1.class
 com\h9w\shop\product\controller\ProductController.class
 com\h9w\shop\product\model\entity\ProductStatus$ProductStatusBuilder.class
-com\h9w\shop\QHello.class
 com\h9w\shop\config\BeanConfiguration.class
 com\h9w\shop\product\model\dto\PageInfoDTO.class
 com\h9w\shop\product\model\dto\ProductStatusDTO.class

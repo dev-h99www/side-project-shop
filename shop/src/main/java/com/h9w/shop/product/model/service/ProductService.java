@@ -1,11 +1,11 @@
 package com.h9w.shop.product.model.service;
 
-import com.h9w.shop.product.model.dto.PageInfoDTO;
-import com.h9w.shop.product.model.dto.ProductCategoryDTO;
-import com.h9w.shop.product.model.dto.ProductDTO;
+import com.h9w.shop.members.model.dto.ResponseDTO;
+import com.h9w.shop.product.model.dto.*;
 import com.h9w.shop.product.model.entity.Product;
 import com.h9w.shop.product.model.repository.ProductCategoryRepository;
 import com.h9w.shop.product.model.repository.ProductRepository;
+import com.h9w.shop.product.model.repository.ProductStatusRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,12 +21,14 @@ public class ProductService {
 
     private final ModelMapper mapper;
     private final ProductCategoryRepository categoryRepo;
+    private final ProductStatusRepository statusRepo;
     private final ProductRepository productRepo;
 
 
-    public ProductService(ModelMapper mapper, ProductCategoryRepository categoryRepo, ProductRepository productRepo) {
+    public ProductService(ModelMapper mapper, ProductCategoryRepository categoryRepo, ProductStatusRepository statusRepo, ProductRepository productRepo) {
         this.mapper = mapper;
         this.categoryRepo = categoryRepo;
+        this.statusRepo = statusRepo;
         this.productRepo = productRepo;
     }
 
@@ -35,9 +37,10 @@ public class ProductService {
      *
      *  comments : 상품의 카테고리, 상태, 검색어 를 입력받아 조회되는 row 수를 반환한다.
      * */
-    public long findProductsCount(int productStatusNo) {
+    public Long findProductsCount(SearchInfoDTO searchInfo) {
 
-        return productStatusNo !=0 ? productRepo.countByProductStatusNo(productStatusNo) : productRepo.count();
+//        return productStatusNo !=0 ? productRepo.countByProductStatusNo(productStatusNo) : productRepo.count();
+        return productRepo.findProductsCountBySearchInfos(searchInfo);
     }
     public List<ProductDTO> findAllProducts(PageInfoDTO pageInfo) {
 
@@ -54,16 +57,34 @@ public class ProductService {
         return mapper.map(productRepo.findById(productNo).get(), ProductDTO.class);
     }
 
+    public List<ProductStatusDTO> findAllProductStatus() {
+
+        return statusRepo.findAll().stream().map(productStatus -> mapper.map(productStatus, ProductStatusDTO.class)).collect(Collectors.toList());
+    }
     public List<ProductCategoryDTO> findAllProductCategories() {
 
         return categoryRepo.findAll().stream().map(category -> mapper.map(category, ProductCategoryDTO.class)).collect(Collectors.toList());
     }
 
     @Transactional
-    public ProductDTO registProduct(ProductDTO registInfo) {
-
+    public ResponseDTO registProduct(ProductDTO registInfo) {
         int registNo = productRepo.save(mapper.map(registInfo, Product.class)).getProductNo();
+        Product product = productRepo.findById(registNo).get();
 
-        return mapper.map(productRepo.findById(registNo).get(), ProductDTO.class);
+        if(!productNullCheck(product)) {
+            productRepo.deleteById(registNo);
+
+            return ResponseDTO.setFailed("regist failed");
+        }
+        return ResponseDTO.setSuccess("regist success", mapper.map(product, ProductDTO.class));
+    }
+
+    private boolean productNullCheck(Product product) {
+        return product.getProductCategory() != null
+                && product.getProductDate() != null && !product.getProductDate().equals("")
+                && product.getProductName() != null && !product.getProductName().equals("")
+                && product.getProductPrice() != 0
+                && product.getProductCategory() != null
+                && product.getProductStatus() != null;
     }
 }

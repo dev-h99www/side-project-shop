@@ -41,9 +41,7 @@ public class MemberService {
 
         memberRepo.save(signupInfo);
 
-        return ResponseDTO.setSuccess("Sign Up Success",
-                /*mapper.map(signupInfo, MemberDTO.class)*/
-                null);
+        return ResponseDTO.setSuccess("Sign Up Success", mapper.map(signupInfo, MemberDTO.class));
     }
 
     public ResponseDTO<SignInResponseDTO> logIn(MemberDTO loginInfo) {
@@ -53,7 +51,7 @@ public class MemberService {
 
         if(!memberRepo.existsByMemberId(memberId)) {
 
-            return ResponseDTO.setFailed("Email not exists");
+            return ResponseDTO.setFailed("Email not exist");
         }
 
         Member memberInfo = memberRepo.findByMemberId(memberId);

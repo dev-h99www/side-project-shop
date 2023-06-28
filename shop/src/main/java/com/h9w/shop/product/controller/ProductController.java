@@ -1,8 +1,10 @@
 package com.h9w.shop.product.controller;
 
+import com.h9w.shop.members.model.dto.ResponseDTO;
 import com.h9w.shop.product.model.dto.PageInfoDTO;
 import com.h9w.shop.product.model.dto.ProductCategoryDTO;
 import com.h9w.shop.product.model.dto.ProductDTO;
+import com.h9w.shop.product.model.dto.SearchInfoDTO;
 import com.h9w.shop.product.model.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +22,7 @@ public class ProductController {
     public ProductController(ProductService service) {
         this.service = service;
     }
+
     @GetMapping("regist")
     public List<ProductCategoryDTO> getProduct() {
 
@@ -27,17 +30,17 @@ public class ProductController {
 
         return service.findAllProductCategories();
     }
+
     @PostMapping("regist")
-    public ProductDTO registProduct(@RequestBody ProductDTO registInfo) {
+    public ResponseDTO registProduct(@RequestBody ProductDTO registInfo) {
 
         return service.registProduct(registInfo);
     }
 
-
     @GetMapping("counts")
-    public long finaProductsCount(@PathVariable("productStatusNo") int productStatusNo) {
+    public long finaProductsCount(@ModelAttribute("searchInfo") SearchInfoDTO searchInfo) {
 
-        return service.findProductsCount(productStatusNo);
+        return service.findProductsCount(searchInfo);
     }
 
     @GetMapping

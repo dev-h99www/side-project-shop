@@ -1,10 +1,12 @@
 package com.h9w.shop.members.model.repository;
 
-import com.h9w.shop.AdminApplication;
+import com.h9w.shop.ShopApplication;
 import com.h9w.shop.config.BeanConfiguration;
 import com.h9w.shop.config.JpaCongifuration;
 import com.h9w.shop.members.model.entity.Member;
 import javax.transaction.Transactional;
+
+import com.h9w.shop.members.model.repository.MemberForMembersRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ContextConfiguration(classes = {
         BeanConfiguration.class,
         JpaCongifuration.class,
-        AdminApplication.class
+        ShopApplication.class
 })
 class MemberForMembersRepositoryTest {
 

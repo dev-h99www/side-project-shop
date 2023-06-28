@@ -7,6 +7,7 @@ import lombok.*;
 @Setter
 @Getter
 @ToString
+@Builder
 public class MemberDTO {
     private int memberNo;
     private String memberId;
