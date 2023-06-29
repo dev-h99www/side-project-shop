@@ -12,10 +12,7 @@ function Main() {
     
     useEffect(
         () => {
-            // dispatch(findProductCountAPI(productStatusNo));
-
             dispatch(findProductsAPI(pageInfo));
-            
         },[]
     );
 

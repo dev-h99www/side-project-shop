@@ -6,7 +6,8 @@ const initialState = {
         memberName: '',
         memberPassword: ''
     },
-    isSignupSuccess: false
+    isSignupSuccess: false,
+    signupResultMessage: ''
 };
 
 export const SET_ID = 'members/SET_ID';
@@ -48,7 +49,7 @@ const memberReducer = handleActions(
             return {...state};
         },
         [POST_SIGNUP]: (state, {payload}) => {
-            
+            state.signupResultMessage = payload.data.message;
             state.isSignupSuccess = payload.data.result;
 
             return {...state};

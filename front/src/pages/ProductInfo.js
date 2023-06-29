@@ -15,7 +15,6 @@ function ProductInfo() {
 
     useEffect(
         () => {
-            console.log(productNo);
             dispatch(getProductInfoAPI(productNo));
         },[]
     );

@@ -1,11 +1,9 @@
 package com.h9w.shop.product.model.repository;
 
 import com.h9w.shop.product.model.dto.PageInfoDTO;
-import com.h9w.shop.product.model.dto.SearchInfoDTO;
 import com.h9w.shop.product.model.entity.Product;
 import com.h9w.shop.product.model.entity.QProduct;
 import com.querydsl.core.BooleanBuilder;
-import com.querydsl.core.types.OrderSpecifier;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import org.springframework.data.domain.Pageable;
 
@@ -19,7 +17,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom{
     }
 
     @Override
-    public Long findProductsCountBySearchInfos(SearchInfoDTO searchInfo) {
+    public Long findProductsCountBySearchInfos(PageInfoDTO searchInfo) {
         BooleanBuilder builder = new BooleanBuilder();
 
         if(searchInfo.getSearchValue() != null) {
@@ -42,7 +40,7 @@ public class ProductRepositoryImpl implements ProductRepositoryCustom{
     }
 
     @Override
-    public List<Product> findProductsBySearchInfos(SearchInfoDTO searchInfo, Pageable pageable) {
+    public List<Product> findProductsBySearchInfos(PageInfoDTO searchInfo, Pageable pageable) {
         BooleanBuilder builder = new BooleanBuilder();
 
         if(searchInfo.getSearchValue() != null) {

@@ -5,21 +5,21 @@ const initialState = {
     price: 1000,
     category: 1,
     no: 0,
-    categorys: []
+    categories: []
 };
 
 export const SET_NAME = 'product/SET_NAME';
 export const SET_PRICE = 'product/SET_PRICE';
 export const SET_CATEGORY = 'product/SET_CATEGORY';
-export const POST_PRODUCT = 'product/REGIST_PRODUCT';
-export const GET_REGIST_PRODUCT = 'product/GET_REGIST_PRODUCT';
+export const POST_PRODUCT = 'product/POST_PRODUCT';
+export const GET_CATEGORIES = 'product/GET_CATEGORIES';
 
 const actions = createActions({
     [SET_NAME]: () => {},
     [SET_PRICE]: () => {},
     [SET_CATEGORY]: () => {},
     [POST_PRODUCT]: () => {},
-    [GET_REGIST_PRODUCT]: () => {}
+    [GET_CATEGORIES]: () => {}
 
 });
 
@@ -51,9 +51,9 @@ const productRegistReducer = handleActions(
             
             return {...state};
         },
-        [GET_REGIST_PRODUCT]: (state, {payload}) => {
+        [GET_CATEGORIES]: (state, {payload}) => {
 
-            state.categorys = payload.data;
+            state.categories = payload.data;
 
             return {...state};
         }

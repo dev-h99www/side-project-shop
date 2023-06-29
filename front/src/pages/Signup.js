@@ -9,9 +9,9 @@ function Signup() {
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { memberInfo, isSignupSuccess } = useSelector(state => state.memberReducer)
+  const { memberInfo, isSignupSuccess, signupResultMessage } = useSelector(state => state.memberReducer)
   
-  const signUpBtnHandler = () => {
+  const signUpBtnHandler = async () => {
     dispatch(signupAPI(memberInfo));
   };
 
@@ -22,11 +22,22 @@ function Signup() {
   useEffect(
     () => {
       if(isSignupSuccess) {
-        alert('sign up success');
+        alert('회원가입 완료!');
         navigate('/');
         dispatch({type: SET_SIGNUP_SUCCESS, payload: isSignupSuccess});
       } 
     },[isSignupSuccess]
+  );
+
+  useEffect(
+    () => {
+      if(signupResultMessage == "Existed Email") {
+        alert("이미 존재하는 아이디입니다.");
+        dispatch({type: SET_ID, payload: ""});
+        dispatch({type: SET_NAME, payload: ""});
+        dispatch({type: SET_PWD, payload: ""});
+      }
+    },[signupResultMessage]
   );
   return(
   <div>

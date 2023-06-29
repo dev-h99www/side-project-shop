@@ -4,7 +4,6 @@ import com.h9w.shop.members.model.dto.ResponseDTO;
 import com.h9w.shop.product.model.dto.PageInfoDTO;
 import com.h9w.shop.product.model.dto.ProductCategoryDTO;
 import com.h9w.shop.product.model.dto.ProductDTO;
-import com.h9w.shop.product.model.dto.SearchInfoDTO;
 import com.h9w.shop.product.model.service.ProductService;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,13 +25,11 @@ public class ProductController {
     @GetMapping
     public ResponseDTO findProductsBySearchCondition(@ModelAttribute("pageInfo") PageInfoDTO pageInfo) {
 
-        return service.findProductsBySearchCondition(pageInfo);
+        return service.findProductsBySearchCondition(pageInfo.setValueToObject());
     }
 
-    @GetMapping("regist")
-    public List<ProductCategoryDTO> getProduct() {
-
-        System.out.println("getmapping product/regist calls");
+    @GetMapping("categories")
+    public List<ProductCategoryDTO> getCategories() {
 
         return service.findAllProductCategories();
     }

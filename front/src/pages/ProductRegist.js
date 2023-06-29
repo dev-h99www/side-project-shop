@@ -2,20 +2,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import ProductManageSide from '../layouts/ProductManageSide';
 import ProductRegistCSS from './ProductRegistCSS.module.css';
 import { useNavigate } from 'react-router-dom';
-import { SET_NAME, SET_PRICE, SET_CATEGORY} from '../modules/ProductRegistModule';
-import { findRegistProductInfoAPI, registProductAPI } from '../apis/ManageProductAPICALL';
+import { SET_NAME, SET_PRICE, SET_CATEGORY, GET_CATEGORIES} from '../modules/ProductRegistModule';
+import { findCategoriesAPI, registProductAPI } from '../apis/ManageProductAPICALL';
 import { useEffect } from 'react';
-import RegistProductCategoryIndex from '../components/RegistProductCategoryIndex';
+import ProductCategoryIndex from '../components/ProductCategoryIndex';
 
 function ProductRegist () {
 
-    const { name, category, price, no, categorys } = useSelector(state => state.productRegistReducer);
+    const { name, category, price, no, categories } = useSelector(state => state.productRegistReducer);
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(
         () => {
-           dispatch(findRegistProductInfoAPI());
+           dispatch(findCategoriesAPI(GET_CATEGORIES));
         },[]
     );
 
@@ -44,7 +44,7 @@ function ProductRegist () {
                     <label>카테고리 : </label>
                     <select defaultValue={ category } onChange={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) }>
                         {
-                            categorys.map(categoryInfo => <RegistProductCategoryIndex categoryInfo={ categoryInfo } key={ categoryInfo.productCategoryNo }/>)
+                            categories.map(categoryInfo => <ProductCategoryIndex categoryInfo={ categoryInfo } key={ categoryInfo.productCategoryNo }/>)
                         }
                     </select>
                 </div>

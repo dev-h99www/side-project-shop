@@ -34,18 +34,18 @@ public class ProductService {
     }
 
     public ResponseDTO findProductsBySearchCondition(PageInfoDTO pageInfo) {
-
         try {
-            pageInfo.setTotalItemCount(productRepo.findProductsCountBySearchInfos(pageInfo.getSearchInfo()).intValue());
+            pageInfo.setTotalItemCount(productRepo.findProductsCountBySearchInfos(pageInfo).intValue());
             Pageable pageable = PageRequest.of(pageInfo.getPage() < 0? 0: pageInfo.getPage() - 1, pageInfo.getPageItemCount());
 
-            List<Product> products = productRepo.findProductsBySearchInfos(pageInfo.getSearchInfo(), pageable);
+            List<Product> products = productRepo.findProductsBySearchInfos(pageInfo, pageable);
 
             ProductsDTO result = ProductsDTO.builder().products(products.stream().map(product -> mapper.map(product, ProductDTO.class)).collect(Collectors.toList()))
-                    .pageInfo(pageInfo).build();
+                    .pageInfo(pageInfo.setObjectToValue()).build();
 
             return ResponseDTO.setSuccess("find products success", result);
         } catch(Exception e) {
+
             return ResponseDTO.setFailed("error occurred");
         }
     }

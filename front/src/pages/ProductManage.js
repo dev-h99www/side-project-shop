@@ -3,26 +3,30 @@ import ProductManageSide from '../layouts/ProductManageSide';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { findProductCountAPI, findProductsAPI } from '../apis/ManageProductAPICALL';
+import { findCategoriesAPI, findStatusAPI, findProductsAPI } from '../apis/ManageProductAPICALL';
 import Pagination from 'react-js-pagination';
-import { PAGE_CHANGE, GET_PRODUCTS } from '../modules/ProductFindModule';
+import { GET_CATEGORIES, PAGE_CHANGE, SET_CATEGORY, SET_PRODUCT_STATUS, SET_SEARCH_VALUE } from '../modules/ProductFindModule';
 import styled from 'styled-components';
 import ProductList from '../components/ProductList';
+import ProductCategoryIndex from '../components/ProductCategoryIndex';
+import ProductStatusIndex from '../components/ProductStatusIndex';
 
 function ProductManage() {
-    const { products, pageInfo } = useSelector(state => state.productFindReducer);
-    const { page, totalItemCount, pageItemCount } = pageInfo;
+    const { products, pageInfo, categories, productStatus } = useSelector(state => state.productFindReducer);
+    const { page, totalItemCount, pageItemCount, statusNo, categoryNo, searchValue } = pageInfo;
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     useEffect(
         () => {
-            // dispatch(findProductCountAPI());
-
+            dispatch(findCategoriesAPI(GET_CATEGORIES));
             dispatch(findProductsAPI(pageInfo));
-            
         },[]
     );
+
+    const onClickHandler = async () => {
+        await dispatch(findProductsAPI(pageInfo));
+    }
 
     const handlePageChange = async (e) => {
 
@@ -35,7 +39,24 @@ function ProductManage() {
         <>
             <ProductManageSide/>
             <div className={ProductManageCSS.area}>
-                <div className={ProductManageCSS.toparea}></div>
+                <div className={ProductManageCSS.toparea}>
+                    <select onChange={ e => dispatch({type: SET_PRODUCT_STATUS, payload: e.target.value}) }>
+                        <option value='0' defaultValue>전체</option>
+                        {
+                            productStatus.map(statusInfo => <ProductStatusIndex statusInfo={ statusInfo } key={ statusInfo.statusNo }/>)
+                        }
+                    </select>
+                    <select onChange={ e => dispatch({type: SET_CATEGORY, payload: e.target.value}) }>
+                        <option value='0' defaultValue>전체</option>
+                        {
+                            categories.map(categoryInfo => <ProductCategoryIndex categoryInfo={ categoryInfo } key={ categoryInfo.productCategoryNo }/>)
+                        }
+                    </select>
+                    <input type="text"
+                        onChange={ e => dispatch({type:SET_SEARCH_VALUE, payload:e.target.value}) }
+                    />
+                    <button onClick={ onClickHandler }>검색</button>
+                </div>
                 <div className={ProductManageCSS.contentarea}>
                     {products.map( product => <ProductList product={product} key={product.productNo}/>)}
                 </div>
