@@ -112,4 +112,36 @@ class ProductServiceTest {
         assertNotNull(productInfo);
         System.out.println(productInfo);
     }
+
+    @Test
+    @DisplayName("조건 없이 상품 조회 테스트")
+    public void findProductsBySearchCondition_test1() {
+        //given
+        int page = 1;
+        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(0).searchInfo(new SearchInfoDTO()).build();
+
+        //when
+        ResponseDTO result = service.findProductsBySearchCondition(pageInfo);
+
+        //then
+        assertNotNull(result);
+
+        System.out.println(result);
+    }
+
+    @Test
+    @DisplayName("카테고리, 상태, 검색어 조건으로 상품 조회 테스트")
+    public void findProductsBySearchCondition_test2() {
+        //given
+        int page = 1;
+        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(17).searchInfo(SearchInfoDTO.builder().searchValue("테스트").categoryNo(1).statusNo(1).build()).build();
+
+        //when
+        ResponseDTO result = service.findProductsBySearchCondition(pageInfo);
+
+        //then
+        assertNotNull(result);
+
+        System.out.println(result);
+    }
 }

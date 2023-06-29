@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -32,24 +33,21 @@ public class ProductService {
         this.productRepo = productRepo;
     }
 
-//    /** params : 상품의 카테고리, 상태, 검색어
-//     *  return : 조회되는 row의 갯수
-//     *
-//     *  comments : 상품의 카테고리, 상태, 검색어 를 입력받아 조회되는 row 수를 반환한다.
-//     * */
-//    public Long findProductsCount(SearchInfoDTO searchInfo) {
-//
-//        return productRepo.findProductsCountBySearchInfos(searchInfo);
-//    }
-
     public ResponseDTO findProductsBySearchCondition(PageInfoDTO pageInfo) {
 
-        Pageable pageable = PageRequest.of(pageInfo.getPage() < 0? 0: pageInfo.getPage() - 1, pageInfo.getPageItemCount(), Sort.by("productNo").descending());
-//        Page<Product> products = productRepo.findAll(pageable);
-//        products.map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList());
-//        return productRepo.findAll().stream().map(product -> mapper.map(product, ProductDTO.class)).collect(Collectors.toList());
-//        productRepo.findAll(pageable).map(product -> mapper.map(product, ProductDTO.class)).stream().collect(Collectors.toList())
-        return null;
+        try {
+            pageInfo.setTotalItemCount(productRepo.findProductsCountBySearchInfos(pageInfo.getSearchInfo()).intValue());
+            Pageable pageable = PageRequest.of(pageInfo.getPage() < 0? 0: pageInfo.getPage() - 1, pageInfo.getPageItemCount());
+
+            List<Product> products = productRepo.findProductsBySearchInfos(pageInfo.getSearchInfo(), pageable);
+
+            ProductsDTO result = ProductsDTO.builder().products(products.stream().map(product -> mapper.map(product, ProductDTO.class)).collect(Collectors.toList()))
+                    .pageInfo(pageInfo).build();
+
+            return ResponseDTO.setSuccess("find products success", result);
+        } catch(Exception e) {
+            return ResponseDTO.setFailed("error occurred");
+        }
     }
 
     public ProductDTO findProductByProductNo(int productNo) {

@@ -1,9 +1,17 @@
 package com.h9w.shop.product.model.dto;
 
-import org.springframework.data.domain.Page;
+import lombok.*;
 
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@ToString
+@Builder
 public class ProductsDTO {
 
-    private Page<ProductDTO> products;
+    private List<ProductDTO> products;
     private PageInfoDTO pageInfo;
 }
