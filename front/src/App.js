@@ -15,8 +15,11 @@ function App() {
           <Route index element={<Main/>}/>
           <Route path="products/history" element={<Main/>}/>
           <Route path="deliveries/history" element={<Main/>}/>
-          <Route path="delivery/manage" element={<DeliveryManage/>}/>
-          <Route path="product/manage">  
+          <Route path="deliveries/manage" element={<DeliveryManage/>}/>
+          <Route path="products">
+            <Route path=":productNo" element={<ProductInfo/>}/>
+          </Route>
+          <Route path="products/manage">  
             <Route index element={<ProductManage/>}/>
             <Route path=":productNo" element={<ProductInfo/>}/>
             <Route path="regist" element={<ProductRegist/>}/>

@@ -26,7 +26,7 @@ export const GET_PRODUCTS = 'products/GET_PRODUCTS';
 export const PAGE_CHANGE = 'products/PAGE_CHANGE';
 export const GET_PRODUCT = 'products/GET_PRODUCT';
 export const SET_CATEGORY = 'products/SET_CATEGORY';
-export const SET_SEARCH_VALUE = 'products/SET_CATEGORY';
+export const SET_SEARCH_VALUE = 'products/SET_SEARCH_VALUE';
 export const GET_CATEGORIES = 'products/GET_CATEGORIES';
 export const SET_PRODUCT_STATUS = 'products/SET_PRODUCT_STATUS';
 
@@ -62,7 +62,7 @@ const productFindReducer = handleActions(
         },
         [SET_CATEGORY]: (state, {payload}) => {
             state.pageInfo.categoryNo = payload;
-
+            
             return {...state};
         },
         [SET_SEARCH_VALUE]: (state, {payload}) => {

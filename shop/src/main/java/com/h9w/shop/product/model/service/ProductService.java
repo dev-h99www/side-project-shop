@@ -1,6 +1,6 @@
 package com.h9w.shop.product.model.service;
 
-import com.h9w.shop.members.model.dto.ResponseDTO;
+import com.h9w.shop.common.model.ResponseDTO;
 import com.h9w.shop.product.model.dto.*;
 import com.h9w.shop.product.model.entity.Product;
 import com.h9w.shop.product.model.repository.ProductCategoryRepository;
@@ -9,14 +9,13 @@ import com.h9w.shop.product.model.repository.ProductStatusRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Transactional
 @Service
 public class ProductService {
 
@@ -50,9 +49,15 @@ public class ProductService {
         }
     }
 
-    public ProductDTO findProductByProductNo(int productNo) {
+    public ResponseDTO findProductByProductNo(int productNo) {
 
-        return mapper.map(productRepo.findById(productNo).get(), ProductDTO.class);
+        try {
+
+            return ResponseDTO.setSuccess("find product success", mapper.map(productRepo.findById(productNo).get(), ProductDTO.class));
+        } catch(Exception e) {
+
+            return ResponseDTO.setFailed("find product error");
+        }
     }
 
     public List<ProductStatusDTO> findAllProductStatus() {
@@ -64,7 +69,6 @@ public class ProductService {
         return categoryRepo.findAll().stream().map(category -> mapper.map(category, ProductCategoryDTO.class)).collect(Collectors.toList());
     }
 
-    @Transactional
     public ResponseDTO registProduct(ProductDTO registInfo) {
         int registNo = productRepo.save(mapper.map(registInfo, Product.class)).getProductNo();
         Product product = productRepo.findById(registNo).get();
@@ -78,6 +82,7 @@ public class ProductService {
     }
 
     private boolean productNullCheck(Product product) {
+
         return product.getProductCategory() != null
                 && product.getProductDate() != null && !product.getProductDate().equals("")
                 && product.getProductName() != null && !product.getProductName().equals("")

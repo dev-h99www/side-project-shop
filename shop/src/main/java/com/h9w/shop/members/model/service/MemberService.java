@@ -3,7 +3,7 @@ package com.h9w.shop.members.model.service;
 import com.h9w.shop.common.EncryptHelper;
 import com.h9w.shop.common.TokenProvider;
 import com.h9w.shop.members.model.dto.MemberDTO;
-import com.h9w.shop.members.model.dto.ResponseDTO;
+import com.h9w.shop.common.model.ResponseDTO;
 import com.h9w.shop.members.model.dto.SignInResponseDTO;
 import com.h9w.shop.members.model.entity.Member;
 import com.h9w.shop.members.model.repository.MemberForMembersRepository;

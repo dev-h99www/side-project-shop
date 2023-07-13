@@ -1,0 +1,27 @@
+.area {
+  z-index: 3;
+  position: fixed;
+  border: 1px solid black;
+  width: 70%;
+  height: 80%;
+  margin-left: 20%;
+  top:100px;
+}
+
+.toparea {
+
+  border: 1px solid black;
+  height: 10%;
+}
+
+.contentarea{
+
+  border: 1px solid black;
+  height: 80%;
+}
+
+.bottomarea{
+
+  border: 1px solid black;
+  height: 10%;
+}
