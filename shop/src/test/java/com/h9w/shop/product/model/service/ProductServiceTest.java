@@ -3,10 +3,8 @@ package com.h9w.shop.product.model.service;
 import com.h9w.shop.ShopApplication;
 import com.h9w.shop.config.BeanConfiguration;
 import com.h9w.shop.config.JpaCongifuration;
-import com.h9w.shop.members.model.dto.ResponseDTO;
+import com.h9w.shop.common.model.ResponseDTO;
 import com.h9w.shop.product.model.dto.*;
-import com.h9w.shop.product.model.entity.Product;
-import com.sun.source.tree.AssertTree;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -106,11 +104,11 @@ class ProductServiceTest {
         int productNo = 10;
 
         //when
-        ProductDTO productInfo = service.findProductByProductNo(productNo);
+        ResponseDTO result = service.findProductByProductNo(productNo);
 
         //then
-        assertNotNull(productInfo);
-        System.out.println(productInfo);
+        assertNotNull(result);
+        System.out.println(result);
     }
 
     @Test
@@ -118,7 +116,7 @@ class ProductServiceTest {
     public void findProductsBySearchCondition_test1() {
         //given
         int page = 1;
-        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(0).searchInfo(new SearchInfoDTO()).build();
+        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(0).build();
 
         //when
         ResponseDTO result = service.findProductsBySearchCondition(pageInfo);
@@ -134,7 +132,7 @@ class ProductServiceTest {
     public void findProductsBySearchCondition_test2() {
         //given
         int page = 1;
-        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(17).searchInfo(SearchInfoDTO.builder().searchValue("테스트").categoryNo(1).statusNo(1).build()).build();
+        PageInfoDTO pageInfo = PageInfoDTO.builder().page(page).pageItemCount(10).totalItemCount(17).searchValue("테스트").categoryNo(1).statusNo(1).build();
 
         //when
         ResponseDTO result = service.findProductsBySearchCondition(pageInfo);

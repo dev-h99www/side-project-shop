@@ -1,7 +1,7 @@
 package com.h9w.shop.members.controller;
 
 import com.h9w.shop.members.model.dto.MemberDTO;
-import com.h9w.shop.members.model.dto.ResponseDTO;
+import com.h9w.shop.common.model.ResponseDTO;
 import com.h9w.shop.members.model.dto.SignInResponseDTO;
 import com.h9w.shop.members.model.service.MemberService;
 import org.springframework.web.bind.annotation.*;

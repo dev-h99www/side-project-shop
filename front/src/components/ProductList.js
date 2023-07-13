@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import ProductListCSS from "./ProductListCSS.module.css";
 
-function ProductList ({product}) {
+function ProductList ({product, url}) {
 
     const navigate = useNavigate();
     const {productNo, productName, productPrice, productCategory, productStatus} = product;
 
     const onClickHandler = () => {
-        navigate(`/product/manage/${productNo}`);
+        navigate(`${url}${productNo}`);
     };
 
     

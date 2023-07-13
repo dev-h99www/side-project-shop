@@ -25,6 +25,7 @@ function ProductManage() {
     );
 
     const onClickHandler = async () => {
+        console.log(pageInfo);
         await dispatch(findProductsAPI(pageInfo));
     }
 
@@ -58,7 +59,7 @@ function ProductManage() {
                     <button onClick={ onClickHandler }>검색</button>
                 </div>
                 <div className={ProductManageCSS.contentarea}>
-                    {products.map( product => <ProductList product={product} key={product.productNo}/>)}
+                    {products.map( product => <ProductList product={product} url={"/products/manage/"} key={product.productNo}/>)}
                 </div>
                 <div className={ProductManageCSS.bottomarea}>
                     <PaginationBox>

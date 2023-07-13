@@ -65,6 +65,6 @@ export function getProductInfoAPI(productNo) {
             
             const result = await axios.get(GET_PRODUCT_URL).catch(err => console.log(err));
 
-            dispatch({type: GET_PRODUCT, payload: result});
+            dispatch({type: GET_PRODUCT, payload: result.data});
     }
 }

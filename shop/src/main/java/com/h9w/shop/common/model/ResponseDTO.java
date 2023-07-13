@@ -1,4 +1,4 @@
-package com.h9w.shop.members.model.dto;
+package com.h9w.shop.common.model;
 
 import lombok.*;
 
