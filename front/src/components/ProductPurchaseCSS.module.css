@@ -1,0 +1,19 @@
+.amountInput {
+  width: 100px;
+  font-size: 1.2em;
+  margin-left: 4%;
+}
+
+.total {
+  margin: 4%;
+  font-size: 1.2em;
+  font-weight: 1000;
+}
+
+.btn {
+  margin-left: 2%;
+  height: 28px;
+  width: 60px;
+  font-size: 1em;
+  font-weight: 800;
+}
