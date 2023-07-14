@@ -1,8 +1,13 @@
 import { createActions, handleActions } from "redux-actions";
 
 const initialState = {
-    purchaseRegistInfo: {
+    registInfo: {
       amount: 0
+    },
+    registResult: {
+        registInfo: {},
+        result: false,
+        message: ""
     }
 }
 
@@ -19,13 +24,16 @@ const actions = createActions({
 const PurchaseModule = handleActions(
     {
         [SET_PRODUCT_AMOUNT]: (state, {payload}) => {
-            state.purchaseRegistInfo.amount = payload;
+            state.registInfo.amount = payload;
 
             return {...state};
         },
         [POST_PURCHASE]: (state, {payload}) => {
-            console.log(payload);
-            
+            const{data, message, result} = payload;
+
+            state.registResult.registInfo = data;
+            state.registResult.message = message;
+            state.registResult.result = result;
             return {...state};
         },
     },

@@ -9,7 +9,6 @@ export function registPurchaseAPI(purchaseInfo) {
   return async function registPurchase(dispatch, getState) {
 
     const result = await axios.post(POST_PURCHASE_URL, purchaseInfo).catch(err => console.log(err));
-    console.log(result);
-    // dispatch({type:POST_PURCHASE, payload: result.data});
+    dispatch({type:POST_PURCHASE, payload: result.data});
   }
 }

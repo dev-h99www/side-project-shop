@@ -1,6 +1,7 @@
 package com.h9w.shop.purchase.controller;
 
 import com.h9w.shop.common.model.ResponseDTO;
+import com.h9w.shop.purchase.model.dto.PageInfoDTO;
 import com.h9w.shop.purchase.model.dto.RegistInfoDTO;
 import com.h9w.shop.purchase.model.service.PurchaseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,5 +29,12 @@ public class PurchaseController {
     public ResponseDTO registPurchase(@RequestBody RegistInfoDTO registInfo) {
 
         return service.registPurchase(registInfo);
+    }
+
+    @GetMapping
+    public ResponseDTO findPurchases(@RequestBody PageInfoDTO searchInfo) {
+
+        System.out.println(searchInfo);
+        return service.findPurchases(searchInfo);
     }
 }

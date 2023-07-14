@@ -25,14 +25,13 @@ function ProductManage() {
     );
 
     const onClickHandler = async () => {
-        console.log(pageInfo);
+        await dispatch({type:PAGE_CHANGE, payload: 1});
         await dispatch(findProductsAPI(pageInfo));
     }
 
     const handlePageChange = async (e) => {
 
         await dispatch({type: PAGE_CHANGE, payload: e});
-    
         await dispatch(findProductsAPI(pageInfo));
       };
 

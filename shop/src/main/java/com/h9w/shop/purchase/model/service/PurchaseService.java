@@ -2,7 +2,9 @@ package com.h9w.shop.purchase.model.service;
 
 import com.h9w.shop.common.DateFormatting;
 import com.h9w.shop.common.model.ResponseDTO;
+import com.h9w.shop.purchase.model.dto.PageInfoDTO;
 import com.h9w.shop.purchase.model.dto.PurchaseDTO;
+import com.h9w.shop.purchase.model.dto.PurchasesDTO;
 import com.h9w.shop.purchase.model.dto.RegistInfoDTO;
 import com.h9w.shop.purchase.model.entity.Purchase;
 import com.h9w.shop.purchase.model.entity.PurchaseHistory;
@@ -11,9 +13,13 @@ import com.h9w.shop.purchase.model.repository.PurchaseHistoryRepository;
 import com.h9w.shop.purchase.model.repository.PurchaseRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Transactional
 @Service
@@ -60,6 +66,25 @@ public class PurchaseService {
         } catch(Exception e) {
 
             return ResponseDTO.setFailed("regist purchase fail");
+        }
+    }
+
+    public ResponseDTO findPurchases(PageInfoDTO searchInfo) {
+
+        try{
+            searchInfo = searchInfo.setValueToObject();
+            searchInfo.setTotalItemCount(purchaseRepo.findAllCountBySearchInfo(searchInfo).intValue());
+            Pageable pageable = PageRequest.of(searchInfo.getPage() < 0? 0: searchInfo.getPage() - 1, searchInfo.getPageItemCount());
+
+            List<Purchase> purchases = purchaseRepo.findAllBySearchInfo(searchInfo, pageable);
+
+            PurchasesDTO result = PurchasesDTO.builder().purchases(purchases.stream().map(purchase -> mapper.map(purchase, PurchaseDTO.class)).collect(Collectors.toList()))
+                                                .pageInfo(searchInfo.setObjectToValue()).build();
+
+            return ResponseDTO.setSuccess("find purchase list by userNo success", result);
+
+        } catch(Exception e) {
+            return ResponseDTO.setFailed("find purchase list by userNo fail");
         }
     }
 }

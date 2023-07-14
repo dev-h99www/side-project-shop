@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import ProductPurchaseCSS from './ProductPurchaseCSS.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_PRODUCT_AMOUNT } from '../modules/PurchaseModule';
@@ -11,9 +11,10 @@ function ProductPurchase() {
 
   const {productNo} = useParams();
   const dispatch = useDispatch();
-  const {purchaseRegistInfo} = useSelector(state => state.purchaseReducer);
+  const navigate = useNavigate();
+  const {registInfo, registResult} = useSelector(state => state.purchaseReducer);
   const {product} = useSelector(state => state.productFindReducer)
-  const {amount} = purchaseRegistInfo;
+  const {amount} = registInfo;
 
   const cookies = new Cookies();
   const token = cookies.get('token');
@@ -24,6 +25,10 @@ function ProductPurchase() {
     },[]
   );
 
+  useEffect(() => {
+  
+  },[registResult.result]);
+
   const onClickHandler = async () => {
     const purchaseInfo = {
       memberNo: decoded.memberNo,
@@ -32,6 +37,11 @@ function ProductPurchase() {
       totalPrice: product.productPrice * amount
     };
     await dispatch(registPurchaseAPI(purchaseInfo));
+    console.log(registResult.result);
+    if(registResult.result) {
+      alert(registResult.registInfo.purchaseNo);
+      window.location.replace(`/purchases/${registResult.registInfo.purchaseNo}`);
+    }
   };
 
   return (

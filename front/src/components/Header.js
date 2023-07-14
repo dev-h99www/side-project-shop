@@ -13,7 +13,7 @@ function Header() {
         <div className={ HerderCSS.headergroup}>
             <div className={HerderCSS.body}>
                 <NavLink to="/"><span className={ HerderCSS.home }>홈</span></NavLink>
-                <NavLink to="/products/history"><span className={ HerderCSS.menu }>구매내역</span></NavLink>
+                <NavLink to="/purchases"><span className={ HerderCSS.menu }>구매내역</span></NavLink>
                 <NavLink to="/deliveries/history"><span className={ HerderCSS.menu }>배송조회</span></NavLink>
                 <NavLink to="/"><span className = { HerderCSS.logout} onClick= { logoutHandler }>로그아웃</span></NavLink>
             </div>

@@ -27,6 +27,7 @@ function Main() {
     );
     
     const onClickHandler = async () => {
+        await dispatch({type:PAGE_CHANGE, payload: 1});
         await dispatch(findProductsAPI(pageInfo));
     }
 
