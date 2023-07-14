@@ -38,6 +38,7 @@ com\h9w\shop\product\model\repository\ProductRepositoryImpl.class
 com\h9w\shop\purchase\model\entity\QProduct.class
 com\h9w\shop\purchase\model\entity\PurchaseHistory$PurchaseHistoryBuilder.class
 com\h9w\shop\purchase\model\repository\PurchaseRepositoryCustom.class
+com\h9w\shop\purchase\model\dto\PurchasesDTO.class
 com\h9w\shop\product\model\entity\Product.class
 com\h9w\shop\product\model\entity\ProductCategory.class
 com\h9w\shop\common\EncryptHelper.class
@@ -53,6 +54,7 @@ com\h9w\shop\config\JpaCongifuration.class
 com\h9w\shop\purchase\model\entity\PurchaseHistoryCategory$PurchaseHistoryCategoryBuilder.class
 com\h9w\shop\product\model\dto\ProductCategoryDTO.class
 com\h9w\shop\purchase\model\repository\ProductForPurchaseRepository.class
+com\h9w\shop\purchase\model\dto\PurchasesDTO$PurchasesDTOBuilder.class
 com\h9w\shop\product\model\dto\ProductsDTO$ProductsDTOBuilder.class
 com\h9w\shop\purchase\model\dto\PageInfoDTO$PageInfoDTOBuilder.class
 com\h9w\shop\purchase\model\service\PurchaseService.class

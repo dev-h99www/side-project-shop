@@ -22,12 +22,16 @@ function ProductRegist () {
     const onClickHandler = async () => {
         await dispatch(registProductAPI(name, category, price));
 
-        if(no > 0) {
-            alert('상품 등록 성공');
-            // window.location.replace('/product/manage');
-            navigate('/product/manage');
-        }
     };
+
+    useEffect(
+        () => {
+            if(no > 0) {
+                alert('상품 등록 성공');
+                window.location.replace('/products/manage');
+            }
+        },[no]
+    );
 
     return (
         <>

@@ -34,7 +34,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepositoryCustom{
         return jpaQueryFactory
                 .select(QPurchase.purchase)
                 .from(QPurchase.purchase)
-                .join(QProduct.product).on(QPurchase.purchase.productNo.eq(QProduct.product.productNo))
+                .join(QProduct.product).on(QPurchase.purchase.product.productNo.eq(QProduct.product.productNo))
                 .where(builder)
                 .orderBy(QPurchase.purchase.purchaseNo.desc())
                 .offset(pageable.getOffset())
@@ -59,7 +59,7 @@ public class PurchaseRepositoryImpl implements PurchaseRepositoryCustom{
         return jpaQueryFactory
                 .select(QPurchase.purchase.purchaseNo.count())
                 .from(QPurchase.purchase)
-                .join(QProduct.product).on(QPurchase.purchase.productNo.eq(QProduct.product.productNo))
+                .join(QProduct.product).on(QPurchase.purchase.product.productNo.eq(QProduct.product.productNo))
                 .where(builder)
                 .fetchOne();
     }

@@ -8,6 +8,7 @@ import com.h9w.shop.purchase.model.dto.PurchasesDTO;
 import com.h9w.shop.purchase.model.dto.RegistInfoDTO;
 import com.h9w.shop.purchase.model.entity.Purchase;
 import com.h9w.shop.purchase.model.entity.PurchaseHistory;
+import com.h9w.shop.purchase.model.repository.ProductForPurchaseRepository;
 import com.h9w.shop.purchase.model.repository.PurchaseHistoryCategoryRepository;
 import com.h9w.shop.purchase.model.repository.PurchaseHistoryRepository;
 import com.h9w.shop.purchase.model.repository.PurchaseRepository;
@@ -33,13 +34,15 @@ public class PurchaseService {
     private final ModelMapper mapper;
     private final PurchaseHistoryRepository historyRepo;
     private final PurchaseHistoryCategoryRepository historyCategoryRepo;
+    private final ProductForPurchaseRepository productRepo;
 
     @Autowired
-    public PurchaseService(PurchaseRepository purchaseRepo, ModelMapper mapper, PurchaseHistoryRepository historyRepo, PurchaseHistoryCategoryRepository historyCategoryRepo) {
+    public PurchaseService(PurchaseRepository purchaseRepo, ModelMapper mapper, PurchaseHistoryRepository historyRepo, PurchaseHistoryCategoryRepository historyCategoryRepo, ProductForPurchaseRepository productRepo) {
         this.purchaseRepo = purchaseRepo;
         this.mapper = mapper;
         this.historyRepo = historyRepo;
         this.historyCategoryRepo = historyCategoryRepo;
+        this.productRepo = productRepo;
     }
 
     /* 구매정보를 상품구매의 비즈니스 로직을 담당하는 메소드
@@ -51,8 +54,8 @@ public class PurchaseService {
 
         try{
             //registInfo의 정보를 TBL_PAYMENT에 삽입
-            Purchase registPurchase = Purchase.builder().productNo(registInfo.getProductNo()).memberNo(registInfo.getMemberNo())
-                    .orderDate(DateFormatting.getDate()).amount(registInfo.getAmount()).totalPrice(registInfo.getTotalPrice()).build();
+            Purchase registPurchase = Purchase.builder().product(productRepo.findById(registInfo.getProductNo()).get()).memberNo(registInfo.getMemberNo())
+                    .orderDate(DateFormatting.getDateAndTime()).amount(registInfo.getAmount()).totalPrice(registInfo.getTotalPrice()).build();
 
             purchaseRepo.save(registPurchase);
 
@@ -78,7 +81,13 @@ public class PurchaseService {
 
             List<Purchase> purchases = purchaseRepo.findAllBySearchInfo(searchInfo, pageable);
 
-            PurchasesDTO result = PurchasesDTO.builder().purchases(purchases.stream().map(purchase -> mapper.map(purchase, PurchaseDTO.class)).collect(Collectors.toList()))
+            PurchasesDTO result = PurchasesDTO.builder().purchases(purchases.stream().map(purchase -> {
+                    PurchaseDTO purchaseDTO = mapper.map(purchase, PurchaseDTO.class);
+                    purchaseDTO.setProductNo(purchase.getProduct().getProductNo());
+                    purchaseDTO.setProductName(purchase.getProduct().getProductName());
+                    return purchaseDTO;
+
+                    }).collect(Collectors.toList()))
                                                 .pageInfo(searchInfo.setObjectToValue()).build();
 
             return ResponseDTO.setSuccess("find purchase list by userNo success", result);

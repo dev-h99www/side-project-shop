@@ -10,6 +10,7 @@ C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\purch
 C:\Users\dissu\Documents\side-project-shop\shop\target\generated-sources\java\com\h9w\shop\members\model\entity\QMember.java
 C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\common\model\ResponseDTO.java
 C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\product\model\dto\ProductDTO.java
+C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\purchase\model\dto\PurchasesDTO.java
 C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\product\model\repository\ProductRepositoryImpl.java
 C:\Users\dissu\Documents\side-project-shop\shop\target\generated-sources\java\com\h9w\shop\product\model\entity\QProduct.java
 C:\Users\dissu\Documents\side-project-shop\shop\src\main\java\com\h9w\shop\members\controller\MemberController.java

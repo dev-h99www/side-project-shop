@@ -13,7 +13,8 @@ import javax.persistence.*;
 public class PurchaseDTO {
     private Long purchaseNo;
     private Integer memberNo;
-    private Integer productNo;
+    private Long productNo;
+    private String productName;
     private String orderDate;
     private Integer amount;
     private Integer totalPrice;

@@ -32,9 +32,8 @@ public class PurchaseController {
     }
 
     @GetMapping
-    public ResponseDTO findPurchases(@RequestBody PageInfoDTO searchInfo) {
+    public ResponseDTO findPurchases(@ModelAttribute PageInfoDTO searchInfo) {
 
-        System.out.println(searchInfo);
         return service.findPurchases(searchInfo);
     }
 }

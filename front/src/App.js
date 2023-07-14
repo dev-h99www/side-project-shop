@@ -6,6 +6,7 @@ import ProductManage from './pages/ProductManage';
 import ProductRegist from './pages/ProductRegist';
 import ProductInfo from './pages/ProductInfo';
 import Signup from './pages/Signup';
+import PurchasesList from './pages/PurchasesList';
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
       <Routes>
         <Route path="/" element={ <Layout/> }>
           <Route index element={<Main/>}/>
-          <Route path="purchases" element={<Main/>}/>
+          <Route path="purchases" element={<PurchasesList/>}/>
           <Route path="deliveries/history" element={<Main/>}/>
           <Route path="deliveries/manage" element={<DeliveryManage/>}/>
           <Route path="products">

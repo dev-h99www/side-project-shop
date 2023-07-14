@@ -37,10 +37,9 @@ function ProductPurchase() {
       totalPrice: product.productPrice * amount
     };
     await dispatch(registPurchaseAPI(purchaseInfo));
-    console.log(registResult.result);
     if(registResult.result) {
-      alert(registResult.registInfo.purchaseNo);
-      window.location.replace(`/purchases/${registResult.registInfo.purchaseNo}`);
+      window.location.replace(`/`);
+      //check window.location.replace(`/purchases/${registResult.registInfo.purchaseNo}`);
     }
   };
 

@@ -58,7 +58,19 @@ function ProductManage() {
                     <button onClick={ onClickHandler }>검색</button>
                 </div>
                 <div className={ProductManageCSS.contentarea}>
-                    {products.map( product => <ProductList product={product} url={"/products/manage/"} key={product.productNo}/>)}
+                    <table className = {ProductManageCSS.tableArea}>
+                        <colgroup>
+                            <col width = "10%"/>
+                            <col width = "40%"/>
+                            <col width = "30%"/>
+                            <col width = "10%"/>
+                            <col width = "10%"/>
+                        </colgroup>
+                        <tbody>
+                            {products.map( product => <ProductList product={product} url={"/products/manage/"} key={product.productNo}/>)}
+                        </tbody>
+                    </table>
+
                 </div>
                 <div className={ProductManageCSS.bottomarea}>
                     <PaginationBox>

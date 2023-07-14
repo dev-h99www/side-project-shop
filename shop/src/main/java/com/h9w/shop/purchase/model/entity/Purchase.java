@@ -30,8 +30,9 @@ public class Purchase {
     @Column(name = "MEMBER_NO")
     private Integer memberNo;
 
-    @Column(name = "PRODUCT_NO")
-    private Long productNo;
+    @ManyToOne
+    @JoinColumn(name = "PRODUCT_NO")
+    private Product product;
 
     @Column(name = "ORDER_DATE")
     private String orderDate;
